@@ -18,9 +18,13 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/employee', function() {
+Route::get('/employee', function () {
     return Inertia::render('Employee/Employee');
 })->name('employee');
+
+Route::get('/latihan', function () {
+    return Inertia::render('Latihan/Latihan');
+})->name('latihan');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +32,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
