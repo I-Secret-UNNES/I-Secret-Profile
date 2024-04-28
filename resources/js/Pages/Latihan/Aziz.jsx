@@ -1,6 +1,10 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import Timeline from "./components/Timeline";
+import Star from "./components/Star";
+import Steps from "./components/Steps";
+import TimelineText from "./components/TimelineText";
+import Phone from "./components/Phone";
 
 export default function Aziz({ auth }) {
     return (
@@ -50,13 +54,47 @@ export default function Aziz({ auth }) {
                 </div>
             </div>
 
+            {/* Jarak */}
+            <section className="h-20"></section>
+
             {/* TIMELINE */}
-           <Timeline />
+            <Timeline />
 
             {/* Jarak */}
-            <div className="h-20"></div>
+            <section className="h-20"></section>
 
-            {/*  */}
+            {/* Star */}
+            <Star />
+
+            {/* Jarak */}
+            <section className="h-12"></section>
+
+            {/* Steps */}
+            <Steps number_1={"Registrationn"} />
+
+            {/* Jarak */}
+            <section className="h-12"></section>
+
+            {/* Line */}
+            <section className="h-0.5 bg-gray-300 w-[80%] mx-auto"></section>
+
+            {/* Jarak */}
+            <section className="h-16"></section>
+
+            {/* Timeline Text */}
+            <TimelineText />
+
+            {/* Jarak */}
+            <section className="h-14"></section>
+
+            {/* Jarak */}
+            <section className="h-28"></section>
+
+            {/* Phone */}
+            <Phone />
+
+            {/* Jarak */}
+            <section className="h-20"></section>
         </AuthenticatedLayout>
     );
 }

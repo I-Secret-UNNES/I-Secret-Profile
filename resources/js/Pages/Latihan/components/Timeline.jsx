@@ -4,7 +4,7 @@ const Timeline = () => {
     return (
         <Fragment>
             {/* TIMELINE */}
-            <div className=" flex justify-center my-20 ">
+            <div className=" flex justify-center ">
                 <ul className="timeline">
                     <li>
                         <div className="timeline-start timeline-box">
