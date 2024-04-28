@@ -47,6 +47,42 @@ export default function Authenticated({ user, header, children }) {
                                     Latihan
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route("aziz")}
+                                    active={route().current("aziz")}
+                                >
+                                    Aziz
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route("adika")}
+                                    active={route().current("adika")}
+                                >
+                                    Adika
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route("rahman")}
+                                    active={route().current("rahman")}
+                                >
+                                    Rahman
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route("izza")}
+                                    active={route().current("izza")}
+                                >
+                                    Izza
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
@@ -163,6 +199,13 @@ export default function Authenticated({ user, header, children }) {
                             active={route().current("latihan")}
                         >
                             Latihan
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route("adika")}
+                            active={route().current("adika")}
+                        >
+                            Adika
                         </ResponsiveNavLink>
                     </div>
 

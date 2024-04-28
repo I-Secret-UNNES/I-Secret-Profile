@@ -26,6 +26,22 @@ Route::get('/latihan', function () {
     return Inertia::render('Latihan/Latihan');
 })->name('latihan');
 
+Route::get('/adika', function () {
+    return Inertia::render('Latihan/Adika');
+})->name('adika');
+
+Route::get('/rahman', function () {
+    return Inertia::render('Latihan/Rahman');
+})->name('rahman');
+
+Route::get('/izza', function () {
+    return Inertia::render('Latihan/Izza');
+})->name('izza');
+
+Route::get('/aziz', function () {
+    return Inertia::render('Latihan/Aziz');
+})->name('aziz');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
