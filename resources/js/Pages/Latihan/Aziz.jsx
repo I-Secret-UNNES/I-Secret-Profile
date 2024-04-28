@@ -1,5 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
+import Timeline from "./components/Timeline";
 
 export default function Aziz({ auth }) {
     return (
@@ -22,7 +23,10 @@ export default function Aziz({ auth }) {
                     </div>
                     <div>
                         <h1 className="text-white text-3xl">
-                            Welcome to your <span className="text-blue-500 font-bold">Journey</span>
+                            Welcome to your{" "}
+                            <span className="text-blue-500 font-bold">
+                                Journey
+                            </span>
                         </h1>
                     </div>
                     <div className="h-10"></div>
@@ -45,6 +49,14 @@ export default function Aziz({ auth }) {
                     </div>
                 </div>
             </div>
+
+            {/* TIMELINE */}
+           <Timeline />
+
+            {/* Jarak */}
+            <div className="h-20"></div>
+
+            {/*  */}
         </AuthenticatedLayout>
     );
 }
