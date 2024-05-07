@@ -18,6 +18,60 @@ export default function Aziz({ auth }) {
         >
             <Head title="Aziz" />
 
+            {/* banner */}
+            <section className="h-96 w-full bg-orange-400 relative">
+                <img
+                    src="https://picsum.photos/200/300?grayscale"
+                    alt=""
+                    className="w-full h-full bg-contain"
+                />
+                <h1 className="absolute left-4 bottom-0 text-center text-white">
+                    <span className=" font-bold text-5xl ">About </span>
+                    <span className=" font-bold text-5xl text-red-500">Us</span>
+                </h1>
+            </section>
+
+            {/* Jarak */}
+            <section className="h-20"></section>
+
+            <section className="flex flex-wrap ">
+                <div className="w-[50%] h-80 ">
+                    <img
+                        src="https://picsum.photos/200/300?grayscale"
+                        alt=""
+                        className="w-[80%] h-full mx-auto"
+                    />
+                </div>
+                <div className="w-[50%]">
+                    <div className="w-[70%] mx-auto">
+                        <h1 className="text-3xl font-bold text-black">
+                            How we started
+                        </h1>
+                        <section className="h-8"></section>
+
+                        <h1 className="text-black text-sm">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Quas ut vitae sint, quaerat aperiam et. Aut
+                            voluptate eum cupiditate illo asperiores mollitia,
+                            temporibus voluptas accusantium! Dignissimos,
+                            laudantium iusto? Ut aut praesentium neque,
+                            excepturi molestiae cupiditate minus voluptate
+                            inventore sed quod tempore sapiente laudantium quae
+                            amet quisquam repellat itaque voluptas illum commodi
+                            error architecto consequatur accusamus suscipit!
+                            Totam, vitae voluptas! Quia eaque illum laborum
+                            quaerat dolorem. Corporis iusto sit ipsum, volupta,
+                            repudiandae dolorum voluptates cupiditate expedita
+                            quos fuga?
+                        </h1>
+                    </div>
+                </div>
+            </section>
+
+            {/* Jarak */}
+            <section className="h-44"></section>
+
+            {/* hero */}
             <div className="h-96  w-full flex bg-gray-800">
                 <div className="w-[50%] py-24 px-36">
                     <div>
