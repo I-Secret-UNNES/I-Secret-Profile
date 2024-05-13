@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "post",
+  "info": {
+    "singularName": "posts",
+    "pluralName": "post",
+    "displayName": "Posts",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "blocks",
+      "required": true
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "link1": {
+      "type": "string"
+    },
+    "link2": {
+      "type": "string"
+    }
+  }
+}
