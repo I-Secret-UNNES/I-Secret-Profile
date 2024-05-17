@@ -14,6 +14,61 @@ export default function Izza({ auth }) {
             <Head title="Izza" />
 
             <div className="py-12">
+                {/* Project Description */}
+                <div className="max-w-screen-xl mx-auto px-6 lg:px-8">    
+                    <h3 className="font-medium text-3xl text-black">Project Description</h3>
+                    <p className="my-8 font-bold text-justify text-black text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p className="my-8 font-base text-justify text-black text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p className="my-8 font-base text-justify text-black text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p className="my-8 font-base text-justify text-black text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+                {/* Recent Projects */}
+                <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
+                    <h2 className="font-bold text-4xl text-black text-center lg:text-left py-3">Recent <span className="text-[#ff6666]">Projects</span></h2>
+                    <div className="w-96 border-t-4 border-solid border-gray-700 rounded-full absolute ml-[280px] mt-[-32px] hidden lg:block"></div>
+                    <div className="flex flex-wrap justify-around ">
+                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
+                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto" />
+                            <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
+                            <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
+                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto"/>
+                            <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
+                            <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
+                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto"/>
+                            <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
+                            <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
+                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto"/>
+                            <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
+                            <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            {/* <div className="py-48">
                 <div className=" max-w-7xl mx-auto sm:px-6 lg:px-8"> 
                     <div className="mb-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-5 font-bold text-gray-900 text-xl text-center">SELAMAT DATANG</div>
@@ -44,12 +99,12 @@ export default function Izza({ auth }) {
                             </div>
                         </div> 
                     </div>
-                    <section className="mt-36 mb-36 py-10 rounded-2xl bg-gradient-to-b from-black to-pink-700">
+                    <section className="mt-36 mb-36 py-10 rounded-2xl bg-gradient-to-b from-black to-pink-500">
                         <div className="mb-2 text-white font-base text-center">Website By</div>
                         <div className="bg-white bg-clip-text text-transparent text-3xl font-bold uppercase text-center">muhammad sulthonul izza</div>
                     </section>
                 </div>
-            </div>
+            </div> */}
         </AuthenticatedLayout>
     );
 }
