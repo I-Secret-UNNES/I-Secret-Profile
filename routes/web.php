@@ -42,6 +42,10 @@ Route::get('/aziz', function () {
     return Inertia::render('Latihan/Aziz');
 })->name('aziz');
 
+Route::get('/events', function () {
+    return Inertia::render('Assignment/Layout/Events');
+})->name('events');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -83,6 +83,15 @@ export default function Authenticated({ user, header, children }) {
                                     Izza
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route("events")}
+                                    active={route().current("events")}
+                                >
+                                    Events
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
@@ -206,6 +215,13 @@ export default function Authenticated({ user, header, children }) {
                             active={route().current("adika")}
                         >
                             Adika
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route("events")}
+                            active={route().current("events")}
+                        >
+                            Events
                         </ResponsiveNavLink>
                     </div>
 
