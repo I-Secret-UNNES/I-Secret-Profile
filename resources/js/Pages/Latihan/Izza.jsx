@@ -5,17 +5,30 @@ export default function Izza({ auth }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Izza 
-                </h2>
-            }
+            // header={
+            //     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+            //         Izza 
+            //     </h2>
+            // }
         >
             <Head title="Izza" />
 
+            <section className="w-full h-full lg:relative">
+                <div className="flex justify-center flex-col items-center py-36 w-full h-full bg-cover bg-[url('https://images.pexels.com/photos/434337/pexels-photo-434337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]" >
+                    <h1 className="text-black text-4xl text-center font-bold">Our <span className="text-[#ff6666]">Projects</span></h1>
+                    <div className="bg-blue-600 rounded-2xl py-10 px-5 w-[60%] lg:w-[40%]">
+                        <p className="text-white text-center">Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Voluptatem magnam facilis illum? Sequi quia
+                            pariatur, officia nulla exercitationem eaque omnis
+                            incidunt dicta libero expedita deserunt provident
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             <div className="py-12">
                 {/* Project Description */}
-                <div className="max-w-screen-xl mx-auto px-6 lg:px-8">    
+                <div className="max-w-screen-xl mx-auto px-6 lg:px-8 relative">    
                     <h3 className="font-medium text-3xl text-black">Project Description</h3>
                     <p className="my-8 font-bold text-justify text-black text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -36,27 +49,22 @@ export default function Izza({ auth }) {
                 </div>
 
                 {/* Recent Projects */}
-                <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
+                <div className="max-w-screen-xl mx-auto px-6 lg:px-8 relative">
                     <h2 className="font-bold text-4xl text-black text-center lg:text-left py-3">Recent <span className="text-[#ff6666]">Projects</span></h2>
                     <div className="w-96 border-t-4 border-solid border-gray-700 rounded-full absolute ml-[280px] mt-[-32px] hidden lg:block"></div>
-                    <div className="flex flex-wrap justify-around ">
-                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
-                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto" />
+                    <div className="flex flex-wrap lg:grid-cols-3 md:grid-cols-2 gap-3">
+                        <div className="w-auto md:w-[45%] lg:w-[30%] my-3 flex-grow">
+                            <img src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg" alt="Project 1" className="mx-auto" />
                             <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
                             <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                         </div>
-                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
-                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto"/>
+                        <div className="w-auto md:w-[45%] lg:w-[30%] my-3 flex-grow">
+                            <img src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg" alt="Project 1" className="mx-auto"/>
                             <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
                             <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                         </div>
-                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
-                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto"/>
-                            <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
-                            <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        </div>
-                        <div className="lg:max-w-sm md:max-w-80 w-auto my-3">
-                            <img src="https://source.unsplash.com/featured/502x318" alt="Project 1" className="mx-auto"/>
+                        <div className="w-auto md:w-[45%] lg:w-[30%] my-3 flex-grow">
+                            <img src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg" alt="Project 1" className="mx-auto"/>
                             <h4 className="font-semibold text-2xl text-black py-3">Project Name</h4>
                             <p className="font-base text-lg text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                         </div>
