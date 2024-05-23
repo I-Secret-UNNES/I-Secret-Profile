@@ -192,14 +192,16 @@ export default function Employee({ auth, employees: initialEmployees }) {
       <div className='py-12'>
         <div className='max-w-7xl mx-auto sm:px-6 lg:px-8'>
           <div className='bg-white overflow-hidden shadow-sm sm:rounded-lg'>
-            <div className='flex justify-between p-6 text-gray-900'>
+            <div className='flex justify-between space-x-4 p-6 text-gray-900'>
               <button
-                className='btn bg-secondary border-none text-white shadow-md hover:bg-tertiary'
+                className='w-1/6 btn bg-secondary border-none text-white shadow-md hover:bg-tertiary'
                 onClick={() => openModal()}
               >
                 Add Employee
               </button>
-              <LiveSearch onResults={handleSearchResults} />
+              <div className='w-5/6'>
+                <LiveSearch onResults={handleSearchResults} />
+              </div>
             </div>
             <EmployeeList
               employees={employees}

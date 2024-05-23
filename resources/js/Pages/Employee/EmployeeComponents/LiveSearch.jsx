@@ -24,13 +24,13 @@ const LiveSearch = ({ onResults }) => {
   };
 
   return (
-    <div>
-      <label className='input input-bordered flex items-center bg-white text-gray-700'>
+    <div className='w-full'>
+      <label className='input input-bordered flex items-center bg-white text-gray-700 w-full'>
         <input
           type='text'
           value={query}
           onChange={handleInputChange}
-          className='grow border-transparent focus:border-transparent focus:ring-0 w-96'
+          className='grow border-transparent focus:border-transparent focus:ring-0 w-full'
           placeholder='Search employee name or role...'
         />
         <svg
@@ -50,4 +50,4 @@ const LiveSearch = ({ onResults }) => {
   );
 };
 
-export default LiveSearch;
+export default LiveSearch
