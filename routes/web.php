@@ -14,6 +14,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/projects', function () {
+    return Inertia::render('Projects/Landing/Projects');
+})->name('Projects');
+
+Route::get('/mainprojects', function () {
+    return Inertia::render('Projects/Landing/MainProjects');
+})->name('MainProjects');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
