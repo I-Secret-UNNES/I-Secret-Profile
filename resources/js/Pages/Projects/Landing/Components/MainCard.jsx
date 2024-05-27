@@ -3,7 +3,7 @@ const MainCard = ( props ) => {
         <div className="flex flex-wrap lg:grid lg:grid-cols-3 w-full">
             <img className="w-full md:min-w-72" src={props.image} alt={props.alt} />
             <div className="flex-nowrap lg:px-7 lg:col-span-2">
-                <h3 className="font-bold text-2xl md:text-3xl text-black py-2">{props.name}</h3>
+                <h3 className="font-bold text-2xl md:text-3xl text-black py-2">{props.title}</h3>
                 <div className="flex-wrap absolute py-3">
                     <img className="w-7 h-7 rounded-full" src={props.profilepic} alt={props.altprofile} />
                     <h6 className="ml-[35%] mt-[-28%] text-xs font-medium text-black">{props.author}</h6>

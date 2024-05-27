@@ -15,8 +15,20 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                primary: '#FF6666',
+                secondary: '#335DCB',
+                tertiary: '#1C447D',
+            },
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        require("daisyui"),
+    ],
+
+    daisyui: {
+        themes: ["light", "dark"], // Ensure that DaisyUI uses its default light and dark themes
+    },
 };
