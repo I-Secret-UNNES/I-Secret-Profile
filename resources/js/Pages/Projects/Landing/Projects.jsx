@@ -1,10 +1,11 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import ProjectsCard from "./Components/ProjectsCard";
 
 export default function Projects({ auth }){
     return (
-        <AuthenticatedLayout user={auth.user}>
+        // <AuthenticatedLayout user={auth.user}>
+        <div className="bg-white">
         
             <Head title="Projects" />
 
@@ -68,6 +69,7 @@ export default function Projects({ auth }){
                 </div>
             </div>
 
-        </AuthenticatedLayout>
+        </div>
+        // </AuthenticatedLayout>
     );
 }

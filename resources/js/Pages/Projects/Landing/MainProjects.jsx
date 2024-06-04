@@ -1,12 +1,12 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import MainCard from "./Components/MainCard";
 import Carousel from "./Components/Carousel";
 
 export default function MainProjects({ auth }) {
     return (
-        <AuthenticatedLayout user={auth.user}>
-
+        // <AuthenticatedLayout user={auth.user}>
+        <div className="bg-white">
             <Head title="Main Projects" />
 
             {/* Banner Start */}
@@ -140,19 +140,20 @@ export default function MainProjects({ auth }) {
                             <button className="bg-transparent shadow-none hover:bg-transparent border-none text-slate-500 hover:text-slate-600 active:text-slate-600 join-item btn">3</button>
                             <button className="bg-transparent shadow-none hover:bg-transparent border-none text-slate-500 hover:text-slate-600 active:text-slate-600 join-item btn">4</button>
                         </div>
-                        {/* pagination end */}
-
                     </div>
+                    {/* pagination end */}
+                    {/* Carousel start */}
                     <h1 className="px-10 text-black text-3xl lg:text-4xl text-center md:text-left font-bold my-5">Check Out Our <span className="text-[#ff6666]">Projects</span></h1>
                     <div className="flex justify-center">
                         <Carousel />
                     </div>
+                    {/* Carousel end */}
                 </div>
             </section>
             {/* Post List End */}
 
 
-
-        </AuthenticatedLayout>
+        </div>
+        // </AuthenticatedLayout>
     )
 }
