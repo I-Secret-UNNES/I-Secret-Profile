@@ -15,8 +15,8 @@ Route::get('/', function () {
 });
 
 Route::get('/events', function () {
-    return Inertia::render('Pages/Landing/');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return Inertia::render('Events/Landing/Events');
+})->name('events');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const CardLeft = ({tanggal, judul, konten}) => {
+const CardLeft = ({date, title, content}) => {
     return (
         <Fragment>
             <div className="hidden md:block mb-14 ">
@@ -16,7 +16,7 @@ const CardLeft = ({tanggal, judul, konten}) => {
                             </div>
                             <div className=" w-full">
                                 <h1 className="text-white font-bold text-xl">
-                                    {tanggal}
+                                    {date}
                                 </h1>
                             </div>
                         </div>
@@ -28,11 +28,11 @@ const CardLeft = ({tanggal, judul, konten}) => {
                             </div>
                             <Jarak tinggi={"h-5"} />
                             <h1 className="text-white font-bold text-3xl">
-                                {judul}
+                                {title}
                             </h1>
                             <Jarak tinggi={"h-4"} />
                             <p className="text-white text-justify">
-                              {konten}
+                              {content}
                             </p>
                         </div>
                     </div>
