@@ -64,7 +64,7 @@ export default function Events({ }) {
             </section>
 
             {/* Jarak */}
-            <div className="h-10"></div>
+            <Jarak tinggi={"h-10"}></Jarak>
 
             {/* navigasi */}
             <div className="w-[80%] mx-auto">
