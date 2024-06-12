@@ -1,11 +1,9 @@
-// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import MainCard from "./Components/MainCard";
-import Carousel from "./Components/Carousel";
+
 
 export default function MainProjects({ auth }) {
     return (
-        // <AuthenticatedLayout user={auth.user}>
         <div className="bg-white">
             <Head title="Main Projects" />
 
@@ -24,7 +22,7 @@ export default function MainProjects({ auth }) {
                     <div className="max-w-screen-xl mx-auto px-6 lg:px-8 relative">
                         <nav>
                             <ul className="flex items-center justify-center gap-11 font-bold text-xl">
-                                <li className="cursor-pointer text-gray-500 hover:text-[#ff6666] active:text-[#ff6666]">All Post</li>
+                                <li className="cursor-pointer text-gray-500 hover:text-[#ff6666] active:text-[#ff6666]">All Projects</li>
                                 <li className="cursor-pointer text-gray-500 hover:text-[#ff6666] active:text-[#ff6666]">Category</li>
                                 <li className="cursor-pointer text-gray-500 hover:text-[#ff6666] active:text-[#ff6666]">Highlighted</li>
                             </ul>
@@ -133,7 +131,7 @@ export default function MainProjects({ auth }) {
                         />
                     </div>
                     {/* pagination start */}
-                    <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
+                    <div className="max-w-screen-xl mx-auto px-5 py-5">
                         <div className="join">
                             <button className="bg-transparent shadow-none hover:bg-transparent border-none text-slate-500 hover:text-slate-600 active:text-slate-600 join-item btn">1</button>
                             <button className="bg-transparent shadow-none hover:bg-transparent border-none text-slate-500 hover:text-slate-600 active:text-slate-600 join-item btn">2</button>
@@ -141,19 +139,15 @@ export default function MainProjects({ auth }) {
                             <button className="bg-transparent shadow-none hover:bg-transparent border-none text-slate-500 hover:text-slate-600 active:text-slate-600 join-item btn">4</button>
                         </div>
                     </div>
-                    {/* pagination end */}
-                    {/* Carousel start */}
-                    <h1 className="px-10 text-black text-3xl lg:text-4xl text-center md:text-left font-bold my-5">Check Out Our <span className="text-[#ff6666]">Projects</span></h1>
-                    <div className="flex justify-center">
-                        <Carousel />
-                    </div>
-                    {/* Carousel end */}
+                    {/* pagination end */}       
+                </div>
+                <div className="pt-5 pb-24">
+                    <div className="w-20 md:w-36 xl:w-[210px] border-[#ff6666] border-4 xl:border-[6px]"></div>
+                    <div className="absolute mx-20 md:mx-36 xl:mx-[207px] my-[-24px] md:my-[-36px] xl:my-[-44px] w-10 h-10 md:w-16 md:h-16 xl:w-20 xl:h-20 border-[#ff6666] border-[8px] xl:border-[10px] rounded-full"></div>
                 </div>
             </section>
             {/* Post List End */}
-
-
         </div>
-        // </AuthenticatedLayout>
+
     )
 }
