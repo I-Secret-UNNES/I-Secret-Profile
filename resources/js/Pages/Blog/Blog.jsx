@@ -7,12 +7,12 @@ import PostList from './BlogComponents/PostList';
 import DeleteModal from './BlogComponents/DeleteModal';
 import Pagination from './BlogComponents/Pagination';
 
-export default function Blog({ auth, posts: initialPosts }) {
+export default function Blog({ auth, posts: initialPosts, categories: initialCategories, users }) {
     const { errors } = usePage().props;
     const { data, setData, processing, reset } = useForm({
         title: '',
         slug: '',
-        category: '',
+        category_id: '',
         thumbnail_img: null,
         body: ''
     });
@@ -31,9 +31,11 @@ export default function Blog({ auth, posts: initialPosts }) {
     const [editPostId, setEditPostId] = useState(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
+    const [categories, setCategories] = useState(initialCategories);
 
     useEffect(() => {
         setPosts(initialPosts.data);
+        setCategories(initialCategories);
         setPagination({
             current_page: initialPosts.current_page,
             last_page: initialPosts.last_page,
@@ -53,7 +55,7 @@ export default function Blog({ auth, posts: initialPosts }) {
                     title: post.title,
                     slug: post.slug,
                     thumbnail_img: null,
-                    category: post.category,
+                    category_id: post.category_id,
                     body: post.body
                 });
             } else {
@@ -72,6 +74,7 @@ export default function Blog({ auth, posts: initialPosts }) {
     }, [reset]);
 
     const openDeleteModal = useCallback(id => {
+        closeModal();
         setDeleteId(id);
         setIsDeleteModalOpen(true);
     }, []);
@@ -114,8 +117,7 @@ export default function Blog({ auth, posts: initialPosts }) {
     const handleChange = useCallback(
         e => {
             const key = e.target.id;
-            const value =
-                e.target.type === 'file' ? e.target.files[0] : e.target.value;
+            const value = e.target.type === 'file' ? e.target.files[0] : e.target.value;
             setData(key, value);
         },
         [setData]
@@ -133,7 +135,7 @@ export default function Blog({ auth, posts: initialPosts }) {
             const formData = new FormData();
             formData.append('title', data.title);
             formData.append('slug', data.slug);
-            formData.append('category', data.category);
+            formData.append('category_id', data.category_id);
             formData.append('body', data.body);
             if (data.thumbnail_img) {
                 formData.append('thumbnail_img', data.thumbnail_img);
@@ -199,6 +201,8 @@ export default function Blog({ auth, posts: initialPosts }) {
                         </div>
                         <PostList
                             posts={posts}
+                            categories={categories}
+                            users={users}
                             onEdit={openModal}
                             onDelete={openDeleteModal}
                         />
@@ -220,6 +224,7 @@ export default function Blog({ auth, posts: initialPosts }) {
                 handleQuillChange={handleQuillChange}
                 errors={errors}
                 processing={processing}
+                categories={categories}
             />
 
             <DeleteModal

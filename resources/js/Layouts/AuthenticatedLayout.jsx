@@ -42,7 +42,7 @@ export default function Authenticated({ user, header, children }) {
               <div className='hidden space-x-8 sm:-my-px sm:ms-10 sm:flex'>
                 <NavLink
                   href={route('posts.index')}
-                  active={route().current('posts.index')}
+                  active={route().current('posts.index') || route().current('posts.categories.index')}
                 >
                   Blog
                 </NavLink>
@@ -147,6 +147,12 @@ export default function Authenticated({ user, header, children }) {
               active={route().current('employees.index')}
             >
               Employee
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href={route('posts.index')}
+              active={route().current('posts.index') || route().current('posts.categories.index')}
+            >
+              Blog
             </ResponsiveNavLink>
           </div>
 

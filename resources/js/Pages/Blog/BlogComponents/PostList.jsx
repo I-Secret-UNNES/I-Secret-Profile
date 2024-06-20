@@ -1,9 +1,26 @@
 import React from 'react';
 
-export default function PostList({ posts, onEdit, onDelete }) {
+export default function PostList({
+  posts,
+  categories,
+  users,
+  onEdit,
+  onDelete
+}) {
+
   if (posts.length === 0) {
-    return <div className='m-2 text-center'>No posts available yet.</div>;
+    return <div className='m-2 text-center'>No post available yet.</div>;
   }
+
+  const getCategoryName = (categoryId) => {
+    const category = categories.find((cat) => cat.id === categoryId);
+    return category ? category.name : 'Unknown';
+  };
+
+  const getAuthorName = (userId) => {
+    const author = users.find((user) => user.id === userId);
+    return author ? author.name : 'Unknown';
+  };
 
   return (
     <div className='overflow-x-auto'>
@@ -11,7 +28,8 @@ export default function PostList({ posts, onEdit, onDelete }) {
         <thead>
           <tr>
             <th className='text-gray-700'>No.</th>
-            <th className='text-gray-700'>Post Id</th>
+            <th className='text-gray-700'>Post ID</th>
+            <th className='text-gray-700'>Author</th>
             <th className='text-gray-700'>Thumbnail Image</th>
             <th className='text-gray-700'>Title</th>
             <th className='text-gray-700'>Category</th>
@@ -32,6 +50,11 @@ export default function PostList({ posts, onEdit, onDelete }) {
                 </div>
               </td>
               <td>
+                <div>
+                  <div className='text-gray-700'>{getAuthorName(post.user_id)}</div>
+                </div>
+              </td>
+              <td>
                 <div className='flex items-center gap-3'>
                   <div className='avatar'>
                     <div className='mask w-24 h-12'>
@@ -47,7 +70,7 @@ export default function PostList({ posts, onEdit, onDelete }) {
               </td>
               <td>
                 <div>
-                  <div className='text-gray-700'>{post.category}</div>
+                  <div className='text-gray-700'>{getCategoryName(post.category_id)}</div>
                 </div>
               </td>
               <td>

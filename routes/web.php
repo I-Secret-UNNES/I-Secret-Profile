@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,15 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::post('/{post}', [PostController::class, 'update'])->name('update');
     Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
 });
+
+Route::prefix('categories')->name('posts.categories.')->group(function () {
+    Route::get('/', [PostCategoryController::class, 'index'])->name('index');
+    Route::get('/search', [PostCategoryController::class, 'search'])->name('search');
+    Route::post('/', [PostCategoryController::class, 'store'])->name('store');
+    Route::post('/{category}', [PostCategoryController::class, 'update'])->name('update');
+    Route::delete('/{category}', [PostCategoryController::class, 'destroy'])->name('destroy');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostCategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -14,9 +16,15 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Post::with('category')->orderBy('id', 'desc')->paginate(10);
+        $categories = PostCategory::all();
+        $users = User::all();
 
-        return Inertia::render('Blog/Blog', ['posts' => $posts]);
+        return Inertia::render('Blog/Blog', [
+            'posts' => $posts,
+            'categories' => $categories,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -27,12 +35,12 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:posts,slug'],
-            'category' => ['required', 'string', 'max:255'],
             'thumbnail_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:8192'],
             'body' => ['required', 'string'],
         ]);
 
         $validatedData['user_id'] = auth()->id();
+        $validatedData['category_id'] = (int) $request['category_id'];
 
         // Handle file upload if a thumbnail image is provided
         if ($request->hasFile('thumbnail_img')) {;
@@ -82,11 +90,11 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:posts,slug,' . $post->id],
-            'category' => ['required', 'string', 'max:255'],
             'thumbnail_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:8192'],
             'body' => ['required', 'string'],
         ]);
 
+        $validatedData['category_id'] = (int) $request['category_id'];
 
         if ($request->hasFile('thumbnail_img')) {
             // Delete the old thumbnail image if it exists

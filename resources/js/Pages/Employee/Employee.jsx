@@ -105,7 +105,7 @@ export default function Employee({ auth, employees: initialEmployees }) {
         { value: 3, name: 'Sekretaris' },
         { value: 4, name: 'Bendahara' },
         { value: 5, name: 'Media and UI' },
-        { value: 6, name: 'Networking' },
+        { value: 6, name: 'Networking' }, 
         { value: 7, name: 'Research' },
         { value: 8, name: 'Programming' },
     ];

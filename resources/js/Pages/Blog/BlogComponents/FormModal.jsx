@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
 import Modal from '@/Components/Modal';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Link } from '@inertiajs/react';
+import { useEffect } from 'react';
 
 export default function FormModal({
   isModalOpen,
@@ -13,19 +14,20 @@ export default function FormModal({
   handleQuillChange,
   errors,
   processing,
+  categories
 }) {
+
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+  };
+
   useEffect(() => {
-    const generateSlug = (title) => {
-      return title
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-') 
-        .replace(/-+/g, '-'); 
-    };
-    if (data.title) {
-      data.slug = generateSlug(data.title);
-    }
-  }, [data.title]);
+    if (data.title) data.slug = generateSlug(data.title);
+  }, [data.title])
 
   return (
     <Modal show={isModalOpen} onClose={closeModal} maxWidth='2xl'>
@@ -76,25 +78,31 @@ export default function FormModal({
           )}
         </div>
 
-        <div className='mt-4'>
-          <label
-            htmlFor='category'
-            className='block text-sm font-medium text-gray-700'
-          >
-            Category
-          </label>
-          <input
-            type='text'
-            className='mt-1 input input-bordered w-full text-gray-700 bg-white'
-            placeholder='e.g., Technology'
-            id='category'
-            value={data.category}
+        <div className="mt-4">
+          <div className='flex justify-between items-center'>
+            <label
+              htmlFor='category_id'
+              className='block text-sm font-medium text-gray-700'
+            >
+              Category
+            </label>
+            <Link href={route('posts.categories.index')}>
+              <button type='button' className='btn btn-sm text-white'>
+                Manage categories
+              </button>
+            </Link>
+          </div>
+          <select
+            className={`select select-bordered w-full bg-white mt-1 text-base ${data.category_id === '' ? 'text-gray-500' : 'text-gray-700'}`}
+            id='category_id'
+            value={data.category_id}
             onChange={handleChange}
-            required
-          />
-          {errors.category && (
-            <p className='text-red-500 text-xs italic'>{errors.category}</p>
-          )}
+          >
+            <option value='' disabled selected>Select a category</option>
+            {categories.map((val, index) => (
+              <option key={index} value={val.id}>{val.name}</option>
+            ))}
+          </select>
         </div>
 
         <div className='mt-4'>
@@ -110,10 +118,10 @@ export default function FormModal({
             className='mt-1 file-input file-input-bordered w-full text-gray-700 bg-white'
             onChange={handleChange}
           />
+          {errors.thumbail_img && (
+            <p className='text-red-500 text-xs italic'>{errors.thumbail_img}</p>
+          )}
         </div>
-        {errors.thumbail_img && (
-          <p className='text-red-500 text-xs italic'>{errors.thumbail_img}</p>
-        )}
         <div className='mt-4 h-56'>
           <label
             htmlFor='body'
