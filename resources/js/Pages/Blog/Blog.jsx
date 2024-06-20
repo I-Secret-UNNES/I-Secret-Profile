@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, router, useForm, usePage } from '@inertiajs/react';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/react';
 import LiveSearch from '../Blog/BlogComponents/LiveSearch';
 import { useCallback, useEffect, useState } from 'react';
 import FormModal from './BlogComponents/FormModal';
@@ -178,9 +178,14 @@ export default function Blog({ auth, posts: initialPosts, categories: initialCat
         <AuthenticatedLayout
             user={auth.user}
             header={
-                <h2 className='font-semibold text-xl text-gray-800 leading-tight'>
-                    Blog
-                </h2>
+                <div className='flex justify-between items-center'>
+                    <h2 className='font-semibold text-xl text-gray-800 leading-tight'>
+                        Blog
+                    </h2>
+                    <Link href={route('posts.categories.index')} className='font-semibold text-md text-blue-500 underline hover:text-blue-700'>
+                        List of Categories
+                    </Link>
+                </div>
             }
         >
             <Head title='Blog' />

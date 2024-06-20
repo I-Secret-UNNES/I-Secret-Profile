@@ -33,14 +33,6 @@ class PostCategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -52,23 +44,7 @@ class PostCategoryController extends Controller
 
         PostCategory::create($validatedData);
 
-        return to_route('posts.categories.index')->with('success', 'ok');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(PostCategory $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PostCategory $category)
-    {
-        //
+        return to_route('posts.categories.index');
     }
 
     /**
@@ -83,7 +59,7 @@ class PostCategoryController extends Controller
 
         $category->update($validatedData);
 
-        return to_route('posts.categories.index')->with('success', 'ok');
+        return to_route('posts.categories.index');
     }
 
     /**
@@ -91,8 +67,9 @@ class PostCategoryController extends Controller
      */
     public function destroy(PostCategory $category)
     {
+        $category->posts()->delete();
         $category->delete();
 
-        return to_route('posts.categories.index')->with('success', 'ok');
+        return to_route('posts.categories.index');
     }
 }

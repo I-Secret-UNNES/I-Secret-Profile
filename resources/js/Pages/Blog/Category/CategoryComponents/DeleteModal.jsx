@@ -20,7 +20,7 @@ export default function DeleteModal({
             <div className='modal-box bg-white'>
                 <h3 className='font-bold text-lg text-gray-700'>Confirm Deletion</h3>
                 <p className='py-4 text-gray-700'>
-                    Are you sure you want to delete the data?
+                    Are you sure you want to delete this category? This action will also delete all related posts
                 </p>
                 <div className='modal-action'>
                     <button

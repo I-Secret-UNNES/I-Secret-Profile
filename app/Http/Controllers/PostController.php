@@ -67,22 +67,6 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    // public function show(Post $post)
-    // {
-    //     //
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    // public function edit(Post $post)
-    // {
-    //     //
-    // }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
@@ -109,7 +93,7 @@ class PostController extends Controller
 
         $post->update($validatedData);
 
-        return to_route('posts.index')->with('success', 'ok');
+        return to_route('posts.index');
     }
 
     /**
@@ -124,6 +108,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
+        return redirect()->route('posts.index');
     }
 }
