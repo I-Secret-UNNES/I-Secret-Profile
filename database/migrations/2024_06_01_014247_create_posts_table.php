@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('thumbnail_img')->nullable();
-            $table->longText('body');
+            $table->longText('thumbnail_img')->nullable();
+            $table->longText('body')->nullable();
             $table->timestamps();
 
             // Foreign Key

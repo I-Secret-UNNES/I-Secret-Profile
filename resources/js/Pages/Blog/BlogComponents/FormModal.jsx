@@ -2,7 +2,8 @@ import Modal from '@/Components/Modal';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Link } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import ImageCropper from './ImageCropper';
 
 export default function FormModal({
   isModalOpen,
@@ -11,7 +12,11 @@ export default function FormModal({
   isEditMode,
   data,
   handleChange,
+  handleCrop,
+  handleFileChange,
   handleQuillChange,
+  showCropper,
+  imageSrc,
   errors,
   processing,
   categories
@@ -27,7 +32,7 @@ export default function FormModal({
 
   useEffect(() => {
     if (data.title) data.slug = generateSlug(data.title);
-  }, [data.title])
+  }, [data.title]);
 
   return (
     <Modal show={isModalOpen} onClose={closeModal} maxWidth='2xl'>
@@ -98,7 +103,7 @@ export default function FormModal({
             value={data.category_id}
             onChange={handleChange}
           >
-            <option value='' disabled selected>Select a category</option>
+            <option value='' disabled>Select a category</option>
             {categories.map((val, index) => (
               <option key={index} value={val.id}>{val.name}</option>
             ))}
@@ -116,12 +121,19 @@ export default function FormModal({
             type='file'
             id='thumbnail_img'
             className='mt-1 file-input file-input-bordered w-full text-gray-700 bg-white'
-            onChange={handleChange}
+            onChange={handleFileChange}
           />
-          {errors.thumbail_img && (
-            <p className='text-red-500 text-xs italic'>{errors.thumbail_img}</p>
+          {errors.thumbnail_img && (
+            <p className='text-red-500 text-xs italic'>{errors.thumbnail_img}</p>
           )}
         </div>
+
+        {imageSrc && (
+          <div className={`mt-4 ${showCropper ? '' : 'hidden'}`}>
+            <ImageCropper imageSrc={imageSrc} onCrop={handleCrop} />
+          </div>
+        )}
+
         <div className='mt-4 h-56'>
           <label
             htmlFor='body'

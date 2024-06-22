@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\UploadImageHelper;
 use App\Models\Post;
 use App\Models\PostCategory;
 use App\Models\User;
@@ -35,17 +36,21 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:posts,slug'],
-            'thumbnail_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:8192'],
-            'body' => ['required', 'string'],
+            'body' => ['nullable', 'string'],
         ]);
 
         $validatedData['user_id'] = auth()->id();
         $validatedData['category_id'] = (int) $request['category_id'];
 
-        // Handle file upload if a thumbnail image is provided
-        if ($request->hasFile('thumbnail_img')) {;
-            $path = $request->file('thumbnail_img')->store('public/post_thumbnail_images');
-            $validatedData['thumbnail_img'] = Storage::url($path);
+        if ($request->has('thumbnail_img')) {
+            $imageUrl = UploadImageHelper::validateAndStoreBase64Image($request->thumbnail_img, 'post_thumbnail_images', $errors);
+
+            if (!$imageUrl) {
+                return redirect()->back()->withErrors($errors)->withInput();
+            }
+
+            // Simpan URL gambar ke dalam validatedData
+            $validatedData['thumbnail_img'] = $imageUrl;
         }
 
         Post::create($validatedData);
@@ -74,21 +79,28 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'unique:posts,slug,' . $post->id],
-            'thumbnail_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:8192'],
             'body' => ['required', 'string'],
         ]);
 
         $validatedData['category_id'] = (int) $request['category_id'];
+        $validatedData['thumbnail_img'] = $request['thumbnail_img'];
 
-        if ($request->hasFile('thumbnail_img')) {
-            // Delete the old thumbnail image if it exists
-            if ($post->thumbnail_img) {
-                $path = str_replace('/storage', 'public', $post->thumbnail_img);
-                Storage::delete($path);
-            }
+        if ($request->has('thumbnail_img')) {
             // Store the new thumbnail image
-            $path = $request->file('thumbnail_img')->store('public/post_thumbnail_images');
-            $validatedData['thumbnail_img'] = Storage::url($path);
+            $imageUrl = UploadImageHelper::validateAndStoreBase64Image($request->thumbnail_img, 'post_thumbnail_images', $errors);
+
+            if (!$imageUrl) {
+                return redirect()->back()->withErrors($errors)->withInput();
+
+                // Delete the old thumbnail image if it exists
+                if ($post->thumbnail_img !== null) {
+                    $path = str_replace('/storage', 'public', $post->thumbnail_img);
+                    Storage::delete($path);
+                }
+            }
+
+            // Simpan URL gambar ke dalam validatedData
+            $validatedData['thumbnail_img'] = $imageUrl;
         }
 
         $post->update($validatedData);

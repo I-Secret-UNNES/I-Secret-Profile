@@ -24,6 +24,8 @@
     },
     "dependencies": {
         "@inertiajs/inertia": "^0.11.1",
+        "cropperjs": "^1.6.2",
+        "react-cropper": "^2.3.3",
         "react-quill": "^2.0.0"
     }
 }

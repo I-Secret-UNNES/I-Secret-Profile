@@ -13,7 +13,7 @@ export default function Blog({ auth, posts: initialPosts, categories: initialCat
         title: '',
         slug: '',
         category_id: '',
-        thumbnail_img: null,
+        thumbnail_img: '',
         body: ''
     });
 
@@ -32,6 +32,9 @@ export default function Blog({ auth, posts: initialPosts, categories: initialCat
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
     const [categories, setCategories] = useState(initialCategories);
+    const [imageSrc, setImageSrc] = useState(null);
+    const [croppedImage, setCroppedImage] = useState(null);
+    const [showCropper, setShowCropper] = useState(true);
 
     useEffect(() => {
         setPosts(initialPosts.data);
@@ -54,7 +57,7 @@ export default function Blog({ auth, posts: initialPosts, categories: initialCat
                 setData({
                     title: post.title,
                     slug: post.slug,
-                    thumbnail_img: null,
+                    thumbnail_img: post.thumbnail_img,
                     category_id: post.category_id,
                     body: post.body
                 });
@@ -117,10 +120,34 @@ export default function Blog({ auth, posts: initialPosts, categories: initialCat
     const handleChange = useCallback(
         e => {
             const key = e.target.id;
-            const value = e.target.type === 'file' ? e.target.files[0] : e.target.value;
+            const value = e.target.value;
             setData(key, value);
         },
         [setData]
+    );
+
+    const handleFileChange = useCallback(
+        e => {
+            setShowCropper(true);
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    setImageSrc(reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        },
+        [setShowCropper, setImageSrc]
+    );
+
+    const handleCrop = useCallback(
+        (croppedDataUrl) => {
+            setShowCropper(false);
+            setCroppedImage(croppedDataUrl);
+            setData('thumbnail_img', croppedDataUrl);
+        },
+        [setShowCropper, setCroppedImage, setData]
     );
 
     const handleQuillChange = useCallback(
@@ -222,11 +249,15 @@ export default function Blog({ auth, posts: initialPosts, categories: initialCat
             <FormModal
                 isModalOpen={isModalOpen}
                 closeModal={closeModal}
-                handleSubmit={handleSubmit}
                 isEditMode={isEditMode}
                 data={data}
                 handleChange={handleChange}
+                handleCrop={handleCrop}
+                handleFileChange={handleFileChange}
                 handleQuillChange={handleQuillChange}
+                handleSubmit={handleSubmit}
+                showCropper={showCropper}
+                imageSrc={imageSrc}
                 errors={errors}
                 processing={processing}
                 categories={categories}
