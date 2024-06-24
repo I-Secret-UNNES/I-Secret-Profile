@@ -42,9 +42,9 @@ Route::get('/aziz', function () {
     return Inertia::render('Latihan/Aziz');
 })->name('aziz');
 
-Route::get('/events', function () {
-    return Inertia::render('Assignment/Layout/Events');
-})->name('events');
+Route::get('/aboutus', function () {
+    return Inertia::render('Assignment/Layout/AboutUs');
+})->name('aboutus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
