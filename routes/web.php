@@ -18,6 +18,10 @@ Route::get('/projects', function () {
     return Inertia::render('Projects/Landing/Projects');
 })->name('Projects');
 
+Route::get('/category', function () {
+    return Inertia::render('Projects/Landing/CategoryProjects');
+})->name('CategoryProjects');
+
 Route::get('/', function () {
     return Inertia::render('Projects/Landing/MainProjects');
 })->name('MainProjects');
