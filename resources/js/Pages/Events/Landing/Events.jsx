@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/react";
 import CardLeft from "../Components/CardLeft";
 import CardRight from "../Components/CardRight";
 import CardMob from "../Components/CardMob";
+import GuestLayout from "@/Layouts/GuestLayout";
 
 export default function Events({ }) {
     const contents = [
@@ -38,6 +39,10 @@ export default function Events({ }) {
         }
     ]
     return (
+        // <GuestLayout>
+        <GuestLayout>
+
+
         <div className="bg-white">
 
             <Head title="Events" />
@@ -112,11 +117,15 @@ export default function Events({ }) {
                 )
             ))}
             </section>
-            <h1>hao</h1>
         </div>
+        {/* // </GuestLayout> */}
+        </GuestLayout>
+
     );
 }
 
 const Jarak = ({ tinggi }) => {
     return <div className={tinggi}></div>;
 }
+
+
