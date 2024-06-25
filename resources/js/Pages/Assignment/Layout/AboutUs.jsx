@@ -29,7 +29,7 @@ function AboutUs({ auth }) {
             <Head title="About Us" />
 
             {/* Banner */}
-            <section className="h-96 w-full bg-orange-400 relative">
+            <section className="h-[calc(100vh-4rem)] overflow-hidden w-full bg-orange-400 relative">
                 <img
                     src="https://picsum.photos/200/300?grayscale"
                     alt="About Us"
