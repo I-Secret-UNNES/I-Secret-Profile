@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 function AboutUs({ auth }) {
-    const [selectedTab, setSelectedTab] = useState('visiMisi'); // State untuk mengatur tab yang dipilih
+    const [selectedTab, setSelectedTab] = useState("visiMisi"); // State untuk mengatur tab yang dipilih
 
     // Fungsi untuk menggeser carousel ke kiri
     const scrollLeft = () => {
@@ -78,16 +78,16 @@ function AboutUs({ auth }) {
             <Spacer height="h-10" />
 
             {/* Navigation Tabs */}
-            <div className="flex bg-orange-200 justify-around">
+            <div className="flex justify-around">
                 <h1
-                    className={`cursor-pointer ${selectedTab === 'visiMisi' ? 'font-bold' : ''}`}
-                    onClick={() => setSelectedTab('visiMisi')}
+                    className={`cursor-pointer w-1/2 text-center py-2 ${selectedTab === "visiMisi" ? "font-bold bg-gradient-to-r from-blue-400 to-blue-200 font-bold text-blue-600" : ""}`}
+                    onClick={() => setSelectedTab("visiMisi")}
                 >
                     Visi Misi
                 </h1>
                 <h1
-                    className={`cursor-pointer ${selectedTab === 'value' ? 'font-bold' : ''}`}
-                    onClick={() => setSelectedTab('value')}
+                    className={`cursor-pointer w-1/2 text-center py-2 ${selectedTab === "value" ? "font-bold bg-gradient-to-r from-blue-400 to-blue-200 font-bold text-blue-600" : ""}`}
+                    onClick={() => setSelectedTab("value")}
                 >
                     Value
                 </h1>
@@ -96,28 +96,70 @@ function AboutUs({ auth }) {
             <Spacer height="h-10" />
 
             {/* Content based on selected tab */}
-            {selectedTab === 'visiMisi' ? (
-                <div className="px-8">
-                    <h2 className="text-xl font-bold">Visi</h2>
-                    <p>Menjadi wadah unggulan dan garda terdepan bagi mahasiswa Ilmu Komputer Universitas Negeri Semarang dalam pengembangan kemampuan teknologi, melalui divisi Research, Media, Networking, dan Programming di tingkat universitas.</p>
-                    <h2 className="text-xl font-bold mt-4">Misi</h2>
-                    <ol className="list-decimal list-inside">
-                        <li>Meningkatkan kapabilitas mahasiswa untuk berpikir kritis dan adaptif dalam menghadapi lanskap teknologi yang terus berkembang pesat.</li>
-                        <li>Mendorong dan mengasah kreativitas mahasiswa untuk berinovasi dan menciptakan solusi-solusi terdepan dalam dunia teknologi.</li>
-                        <li>Membangun konektivitas yang kokoh melalui komunitas yang positif, inklusif, dan kolaboratif, demi menciptakan lingkungan belajar yang mendukung pertumbuhan profesional dan pribadi mahasiswa.</li>
+            {selectedTab === "visiMisi" ? (
+                <div className="px-4">
+                    <h2 className="text-xl font-bold text-black">Visi</h2>
+                    <p className="text-black">
+                        Menjadi wadah unggulan dan garda terdepan bagi mahasiswa
+                        Ilmu Komputer Universitas Negeri Semarang dalam
+                        pengembangan kemampuan teknologi, melalui divisi
+                        Research, Media, Networking, dan Programming di tingkat
+                        universitas.
+                    </p>
+                    <h2 className="text-xl font-bold mt-4 text-black">Misi</h2>
+                    <ol className="list-decimal list-inside text-black">
+                        <li>
+                            Meningkatkan kapabilitas mahasiswa untuk berpikir
+                            kritis dan adaptif dalam menghadapi lanskap
+                            teknologi yang terus berkembang pesat.
+                        </li>
+                        <li>
+                            Mendorong dan mengasah kreativitas mahasiswa untuk
+                            berinovasi dan menciptakan solusi-solusi terdepan
+                            dalam dunia teknologi.
+                        </li>
+                        <li>
+                            Membangun konektivitas yang kokoh melalui komunitas
+                            yang positif, inklusif, dan kolaboratif, demi
+                            menciptakan lingkungan belajar yang mendukung
+                            pertumbuhan profesional dan pribadi mahasiswa.
+                        </li>
                     </ol>
                 </div>
             ) : (
                 <div className="px-8">
                     <h2 className="text-xl font-bold">Value</h2>
-                    <p>Di I-SECRET, kami memegang teguh nilai-nilai inovasi tanpa batas, pembelajaran yang adaptif, dan komitmen pada keunggulan untuk menghadapi perubahan. Dengan semangat kolaborasi yang kuat, kami membangun komunitas inklusif yang menghargai setiap ide dan suara, memberi wadah setiap anggota untuk berkembang menjadi pemimpin masa depan yang bijak dan berwawasan luas. Melalui dedikasi pada keunggulan dan integritas tinggi, kami berkomitmen menjadi garda terdepan dalam pengembangan teknologi di Unnes. Bersama-sama, kita merajut inovasi, menggali potensi, dan membangun masa depan yang gemilang serta siap menghadapi tantangan global dengan pemikiran kritis dan adaptif dalam dunia yang dinamis.</p>
+                    <p>
+                        Di I-SECRET, kami memegang teguh nilai-nilai inovasi
+                        tanpa batas, pembelajaran yang adaptif, dan komitmen
+                        pada keunggulan untuk menghadapi perubahan. Dengan
+                        semangat kolaborasi yang kuat, kami membangun komunitas
+                        inklusif yang menghargai setiap ide dan suara, memberi
+                        wadah setiap anggota untuk berkembang menjadi pemimpin
+                        masa depan yang bijak dan berwawasan luas. Melalui
+                        dedikasi pada keunggulan dan integritas tinggi, kami
+                        berkomitmen menjadi garda terdepan dalam pengembangan
+                        teknologi di Unnes. Bersama-sama, kita merajut inovasi,
+                        menggali potensi, dan membangun masa depan yang gemilang
+                        serta siap menghadapi tantangan global dengan pemikiran
+                        kritis dan adaptif dalam dunia yang dinamis.
+                    </p>
                 </div>
             )}
 
             <Spacer height="h-96" />
 
+            {/* Carousel Mobile */}
+            <section className="md:hidden">
+                <div className="w-[95%] mx-auto bg-orange-300 flex justify-between flex-wrap">
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+            </section>
+
             {/* Carousel Section */}
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden hidden md:block">
                 <button
                     className="absolute left-0 z-10 p-2 bg-gray-800 text-white"
                     onClick={scrollLeft}
@@ -137,7 +179,7 @@ function AboutUs({ auth }) {
                     {/* Items for the carousel */}
                     {Array.from({ length: 5 }).map((_, index) => (
                         <div
-                            className="snap-start w-[20%] h-80 bg-orange-200 mx-4 flex-shrink-0"
+                            className="snap-start md:w-[25%] lg:w-[20%] h-80  mx-4 flex-shrink-0 bg-orange-400"
                             key={index}
                         >
                             Item {index + 1}
@@ -153,6 +195,30 @@ function AboutUs({ auth }) {
 
 const Spacer = ({ height }) => {
     return <div className={`${height}`}></div>;
+};
+
+// Komponen Card yang digunakan di Carousel Mobile
+const Card = () => {
+    return (
+        <div className="bg-blue-500 w-[48%] h-[225px] rounded-2xl overflow-hidden mb-3">
+            <div className="w-full h-[50%]">
+                <img
+                    src="https://picsum.photos/200/300?grayscale"
+                    alt=""
+                    className="w-full h-full"
+                />
+                <Spacer height={"h-2"} />
+                <div className="w-[95%] mx-auto">
+                    <h1 className="text-white text-center">Judul Bang</h1>
+                    <p className="text-[10px] text-white">
+                        Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Iure cum consectetur ea
+                        necessitatibus, animi qui
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default AboutUs;
