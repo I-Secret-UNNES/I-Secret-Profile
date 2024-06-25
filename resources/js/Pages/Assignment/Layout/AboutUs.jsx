@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 function AboutUs({ auth }) {
+    const [selectedTab, setSelectedTab] = useState('visiMisi'); // State untuk mengatur tab yang dipilih
+
     // Fungsi untuk menggeser carousel ke kiri
     const scrollLeft = () => {
         document
@@ -18,18 +20,11 @@ function AboutUs({ auth }) {
     };
 
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Raturu
-                </h2>
-            }
-        >
+        <AuthenticatedLayout user={auth.user}>
             <Head title="About Us" />
 
             {/* Banner */}
-            <section className="h-[calc(100vh-4rem)] overflow-hidden w-full bg-orange-400 relative">
+            <section className="h-[calc(100vh-4rem)] w-full bg-orange-400 relative">
                 <img
                     src="https://picsum.photos/200/300?grayscale"
                     alt="About Us"
@@ -58,20 +53,68 @@ function AboutUs({ auth }) {
                         <h1 className="text-3xl font-bold text-black mt-4">
                             How we started
                         </h1>
-                        <Spacer height="h-8" />
+                        <Spacer height="h-4" />
                         <h1 className="font-bold text-black text-md">
                             Sejarah Singkat
                         </h1>
                         <p className="text-black text-md text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
+                            I-SECRET (Information System and Computer
+                            Engineering Research and Technology) adalah sebuah
+                            komunitas riset yang berfokus pada teknologi ilmu
+                            komputer. Komunitas ini bermula dari lomba Program
+                            Kreativitas Mahasiswa (PKM) pada tahun 2017. Setelah
+                            mendapatkan hasil yang memuaskan, para peserta dan
+                            pembimbing lomba tersebut memutuskan untuk
+                            mengembangkan ide dan inovasi mereka lebih lanjut.
                         </p>
                     </div>
                 </div>
             </section>
 
-            <Spacer height="h-44" />
+            <Spacer height="h-10" />
+
+            <div>ketua dan wakil ketua</div>
+
+            <Spacer height="h-10" />
+
+            {/* Navigation Tabs */}
+            <div className="flex bg-orange-200 justify-around">
+                <h1
+                    className={`cursor-pointer ${selectedTab === 'visiMisi' ? 'font-bold' : ''}`}
+                    onClick={() => setSelectedTab('visiMisi')}
+                >
+                    Visi Misi
+                </h1>
+                <h1
+                    className={`cursor-pointer ${selectedTab === 'value' ? 'font-bold' : ''}`}
+                    onClick={() => setSelectedTab('value')}
+                >
+                    Value
+                </h1>
+            </div>
+
+            <Spacer height="h-10" />
+
+            {/* Content based on selected tab */}
+            {selectedTab === 'visiMisi' ? (
+                <div className="px-8">
+                    <h2 className="text-xl font-bold">Visi</h2>
+                    <p>Menjadi wadah unggulan dan garda terdepan bagi mahasiswa Ilmu Komputer Universitas Negeri Semarang dalam pengembangan kemampuan teknologi, melalui divisi Research, Media, Networking, dan Programming di tingkat universitas.</p>
+                    <h2 className="text-xl font-bold mt-4">Misi</h2>
+                    <ol className="list-decimal list-inside">
+                        <li>Meningkatkan kapabilitas mahasiswa untuk berpikir kritis dan adaptif dalam menghadapi lanskap teknologi yang terus berkembang pesat.</li>
+                        <li>Mendorong dan mengasah kreativitas mahasiswa untuk berinovasi dan menciptakan solusi-solusi terdepan dalam dunia teknologi.</li>
+                        <li>Membangun konektivitas yang kokoh melalui komunitas yang positif, inklusif, dan kolaboratif, demi menciptakan lingkungan belajar yang mendukung pertumbuhan profesional dan pribadi mahasiswa.</li>
+                    </ol>
+                </div>
+            ) : (
+                <div className="px-8">
+                    <h2 className="text-xl font-bold">Value</h2>
+                    <p>Di I-SECRET, kami memegang teguh nilai-nilai inovasi tanpa batas, pembelajaran yang adaptif, dan komitmen pada keunggulan untuk menghadapi perubahan. Dengan semangat kolaborasi yang kuat, kami membangun komunitas inklusif yang menghargai setiap ide dan suara, memberi wadah setiap anggota untuk berkembang menjadi pemimpin masa depan yang bijak dan berwawasan luas. Melalui dedikasi pada keunggulan dan integritas tinggi, kami berkomitmen menjadi garda terdepan dalam pengembangan teknologi di Unnes. Bersama-sama, kita merajut inovasi, menggali potensi, dan membangun masa depan yang gemilang serta siap menghadapi tantangan global dengan pemikiran kritis dan adaptif dalam dunia yang dinamis.</p>
+                </div>
+            )}
+
+            <Spacer height="h-96" />
 
             {/* Carousel Section */}
             <div className="relative w-full overflow-hidden">
@@ -100,7 +143,7 @@ function AboutUs({ auth }) {
                             Item {index + 1}
                         </div>
                     ))}
-                </div>               
+                </div>
             </div>
 
             <Spacer height="h-44" />
