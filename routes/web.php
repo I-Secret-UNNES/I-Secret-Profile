@@ -18,6 +18,10 @@ Route::get('/events', function () {
     return Inertia::render('Events/Landing/Events');
 })->name('events');
 
+Route::get('/mainevents', function () {
+    return Inertia::render('Events/Landing/MainEvents');
+})->name('mainevents');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
