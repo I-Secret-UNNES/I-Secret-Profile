@@ -1,7 +1,7 @@
-export default function CalenderLogo({color, ...props}) {
+export default function CalenderLogo({ color, ...props }) {
   return (
     <svg
-    {...props}
+      {...props}
       width='22'
       height='22'
       viewBox='0 0 22 22'

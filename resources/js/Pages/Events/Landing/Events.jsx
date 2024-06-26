@@ -97,6 +97,7 @@ export default function Events({}) {
         <Jarak tinggi={'h-5'} />
 
         <SearchInput
+          lebar={'events'}
           value={searchTerm}
           onChange={handleSearchChange}
           onClear={handleClearSearch}
@@ -145,4 +146,4 @@ export default function Events({}) {
 
 const Jarak = ({ tinggi }) => {
   return <div className={tinggi}></div>;
-}
+};

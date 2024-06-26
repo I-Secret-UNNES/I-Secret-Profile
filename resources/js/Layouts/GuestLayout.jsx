@@ -8,6 +8,7 @@ import InstagramLogo from '@/Components/icon/InstagramLogo';
 import YoutubeLogo from '@/Components/icon/YoutubeLogo';
 import LinkedinLogo from '@/Components/icon/LinkedinLogo';
 import XLogo from '@/Components/icon/XLogo';
+import IsecretLogo from '@/Components/icon/ISecretLogo';
 
 export default function GuestLayout({ children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -263,30 +264,30 @@ const Footer = () => {
         </div>
         <div className='flex lg:hidden gap-8 justify-center py-5'>
           <a href='#'>
-            <InstagramLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <InstagramLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
           <a href='#'>
-            <YoutubeLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <YoutubeLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
           <a href='#'>
-            <LinkedinLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <LinkedinLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
           <a href='#'>
-            <XLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <XLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
         </div>
         <div className='hidden lg:grid max-w-10 gap-2 py-3 mx-2'>
           <a href='#'>
-            <InstagramLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <InstagramLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
           <a href='#'>
-            <YoutubeLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <YoutubeLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
           <a href='#'>
-            <LinkedinLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <LinkedinLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
           <a href='#'>
-            <XLogo className='block h-9 w-auto fill-current text-gray-800' />
+            <XLogo color={"white"} className='block h-9 w-auto fill-current text-gray-800' />
           </a>
         </div>
       </div>

@@ -1,8 +1,16 @@
 import React from 'react';
 
-function SearchInput({ value, onChange, placeholder, onClear }) {
+function SearchInput({ value, onChange, placeholder, onClear, lebar }) {
+  let style;
+  if (lebar == 'events') {
+    style = 'w-[70%] md:w-[40%]';
+  } else if (lebar == 'mainevents') {
+    style = 'w-full md:w-full';
+  }
   return (
-    <div className='flex justify-center items-center relative w-[70%] md:w-[40%] mx-auto'>
+    <div
+      className={`flex justify-center ${style} items-center relative mx-auto`}
+    >
       <input
         type='text'
         value={value}
