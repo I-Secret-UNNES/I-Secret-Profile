@@ -30,32 +30,32 @@ export default function GuestLayout({ children }) {
             <div className='hidden sm:flex sm:items-center sm:ms-6'>
               <div className='hidden space-x-8 sm:-my-px sm:ms-10 sm:flex '>
                 <NavLink
-                  href={route('dashboard')}
-                  active={route().current('dashboard')}
+                  href={route('MainProjects')}
+                  active={route().current('Dashboard')}
                 >
                   Dashboard
                 </NavLink>
                 <NavLink
-                  href={route('mainprojects')}
-                  active={route().current('mainprojects')}
+                  href={route('MainProjects')}
+                  active={route().current('MainProjects')}
                 >
                   Projects
                 </NavLink>
                 <NavLink
-                  href={route('mainprojects')}
-                  active={route().current('events')}
+                  href={route('MainProjects')}
+                  active={route().current('Events')}
                 >
                   Events
                 </NavLink>
                 <NavLink
-                  href={route('mainprojects')}
-                  active={route().current('blogs')}
+                  href={route('MainProjects')}
+                  active={route().current('Blogs')}
                 >
                   Blogs
                 </NavLink>
                 <NavLink
-                  href={route('mainprojects')}
-                  active={route().current('aboutus')}
+                  href={route('MainProjects')}
+                  active={route().current('AboutUs')}
                 >
                   About Us
                 </NavLink>

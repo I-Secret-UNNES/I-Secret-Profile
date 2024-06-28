@@ -26,7 +26,10 @@ const Body = (props) => {
                 </div>
             </div>
             <p className="w-full text-justify font-base text-slate-800 text-sm">{children}</p>
-            <button className="px-5 py-2 w-max rounded-md font-bold text-sm text-white bg-blue-600 hover:bg-blue-500 transition-all duration-300 ease-in-out">Read full article...</button>
+            <a 
+            className="px-5 py-2 w-max rounded-md font-bold text-sm text-white bg-blue-600 hover:bg-blue-500 transition-all duration-300 ease-in-out"
+            href="/projects"
+            >Read full article...</a>
         </div>
     )
 }
