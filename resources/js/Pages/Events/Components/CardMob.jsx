@@ -3,7 +3,7 @@ import React from 'react';
 import LeftRoundedMob from '@/Components/icon/LeftRoundedMob';
 import RightRoundedMob from '@/Components/icon/RightRoundedMob';
 
-const CardMob = ({ title, content, date, isLeft }) => {
+const CardMob = ({ title, content, date, isLeft, id }) => {
   return (
     <section className='w-[90%] mx-auto bg-blue-800 mb-10 rounded-2xl h-full flex justify-center pb-16 relative'>
       <div className='w-full h-full px-8 py-6'>
@@ -30,7 +30,7 @@ const CardMob = ({ title, content, date, isLeft }) => {
         <Jarak tinggi={'h-4'} />
         <h1 className='text-white font-bold text-3xl'>{title}</h1>
         <Jarak tinggi={'h-4'} />
-        <a href='/mainevents'>
+        <a href={`/events/${id}`}>
           <button className='py-1 px-6 border-[#1C447D] border-solid border-2 rounded-full focus:bg-blue-500'>
             <h1 className='text-white'>Selengkapnya</h1>
           </button>

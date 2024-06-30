@@ -2,6 +2,16 @@ import React, { Fragment } from 'react';
 import RightRoundedMob from '@/Components/icon/RightRoundedMob';
 import CalenderLogo from '@/Components/icon/CalenderLogo';
 
+// CSS ditambahkan di sini
+const styles = {
+  clampText: {
+    display: '-webkit-box',
+    WebkitLineClamp: 8,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
+  },
+};
+
 const CardRight = ({ id, date, title, content }) => {
   return (
     <Fragment>
@@ -19,7 +29,10 @@ const CardRight = ({ id, date, title, content }) => {
               <Jarak tinggi={'h-5'} />
               <h1 className='text-white font-bold text-3xl'>{title}</h1>
               <Jarak tinggi={'h-4'} />
-              <p className='text-white text-justify' dangerouslySetInnerHTML={{ __html: content }}></p>
+              <p 
+              className='text-white text-justify' 
+              style={styles.clampText}
+              dangerouslySetInnerHTML={{ __html: content }}></p>
             </div>
             <div className='w-[30%] ml-10 flex items-end flex-col'>
               <div className='overflow-hidden h-64 w-full rounded-3xl'>

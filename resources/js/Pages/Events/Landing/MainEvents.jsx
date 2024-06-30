@@ -113,7 +113,7 @@ const MainEvents = ({event}) => {
 
           <Jarak tinggi={'h-5'} />
 
-          <p dangerouslySetInnerHTML={{ __html: event.description }} className='text-black'></p>
+          <p dangerouslySetInnerHTML={{ __html: event.description }} className='text-black text-justify'></p>
         </section>
 
         <Jarak tinggi={'h-20'} />
