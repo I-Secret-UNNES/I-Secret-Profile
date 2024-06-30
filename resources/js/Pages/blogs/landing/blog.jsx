@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Head } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import PostCard from '../components/PostCard';
+import MainCard from '../components/MainCard';
 import BannerEvents from '../components/Bannerblog';
 import SearchInput from '../components/SearchInput';
 import GuestLayout from '@/Layouts/GuestLayout';
+import Pagination from '../components/Pagination';
 
 export default function blogs({}) {
 
@@ -17,34 +18,54 @@ export default function blogs({}) {
 
     const initialContents = [
         {
-            title: 'Post 1',
-            author: 'Dika',
-            date: '2021-10-10 00:00:00',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, libero'
+            id: 1,
+            image: "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg",
+            alt: "Project 1",
+            title: "Project 1",
+            profilepic: "https://images.unsplash.com/photo-1575436611232-44651b483d46?q=80&w=1898&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            altprofile: "Chaewan",
+            author: "Chaewan",
+            date: "May 30 2024",
+            publishtime: "3 Min",
+            desc: `Lorem ipsum dolor sit amet consectetur. Consectetur risus 
+            quis diam hendrerit. Interdum mattis in sed diam egestas metus at duis commodo. Cursus quis cursus dignissim egestas sollicitudin 
+            tristique quis.`,
         },
         {
-            title: 'Post 2',
-            author: 'Dika',
-            date: '2021-10-10 00:00:00',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, libero'
+            id : 2,
+            image: "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg",
+            alt: "Project 2",
+            title: "Project 2",
+            profilepic: "https://images.unsplash.com/photo-1575436611232-44651b483d46?q=80&w=1898&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            altprofile: "ADika",
+            author: "Adika",
+            date: "May 27 2024",
+            publishtime: "5 Min",
+            desc: `Lorem ipsum dolor sit amet consectetur. Consectetur risus`
         },
         {
-            title: 'Post 3',
-            author: 'Dika',
-            date: '2021-10-10 00:00:00',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, libero'
+            id : 3,
+            image: "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg",
+            alt: "Project 3",
+            title: "Project 3",
+            profilepic: "https://images.unsplash.com/photo-1575436611232-44651b483d46?q=80&w=1898&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            altprofile: "Kazuha",
+            author: "Kazuha",
+            date: "May 30 2024",
+            publishtime: "3 Min",
+            desc: `Lorem ipsum dolor sit amet consectetur. Consectetur risus`,
         },
         {
-            title: 'Post 4',
-            author: 'Dika',
-            date: '2021-10-10 00:00:00',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, libero'
-        },
-        {
-            title: 'Post 5',
-            author: 'Dika',
-            date: '2021-10-10 00:00:00',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, libero'
+            id : 4,
+            image: "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg",
+            alt: "Musyawarah Kerja I-SECRET ILKOM UNNES",
+            title: "Musyawarah Kerja I-SECRET ILKOM UNNES",
+            profilepic: "https://images.unsplash.com/photo-1575436611232-44651b483d46?q=80&w=1898&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            altprofile: "Azis",
+            author: "Azis",
+            date: "June 30 2024",
+            publishtime: "3 Min",
+            desc: `Musyawarah Kerja (Musker) Isecret Ilkom UNNES adalah sebuah forum pertemuan tahunan yang diselenggarakan oleh Ikatan Mahasiswa Sistem Komputer (Isecret) Universitas Negeri Semarang (UNNES). `,
         },
     ]
     const [searchTerm, setSearchTerm] = useState('');
@@ -105,19 +126,32 @@ export default function blogs({}) {
 
             <Jarak tinggi={'h-10'} />
 
-            {/* Render filtered blog posts */}
-            <div className="flex justify-center items-center">
-            <div>
-            <section className='w-full'>
-      {filteredContents.map((post, index) => (
-        <PostCard key={index} post={post} index={index} />
-      ))}
-    </section>
-    <Jarak tinggi={'h-10'} />
-  </div>
-</div>
-
-        </div>
+             {/* Post List Start */}
+             <Jarak tinggi={'h-10'} />
+                <section className="w-full h-full lg:relative">
+                    <div className="py-2">
+                        {/* Card Start */}
+                        <div className="md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-none max-w-screen-xl mx-auto px-6 lg:px-8 relative">
+                            {filteredContents.map((data) => (
+                                <MainCard key={data.id}>
+                                    <MainCard.Header image={data.image} alt={data.alt} />
+                                    <MainCard.Body
+                                        title={data.title}
+                                        profilepic={data.profilepic}
+                                        altprofile={data.altprofile}
+                                        author={data.author}
+                                        date={data.date}
+                                        publishtime={data.publishtime}
+                                    >{data.desc}</MainCard.Body>
+                                </MainCard>
+                            ))}
+                        </div>
+                        {/* Card End */}
+                        <Pagination />
+                    </div>
+                </section>
+                {/* Post List End */}
+                </div>
     </GuestLayout>
     );
 }
