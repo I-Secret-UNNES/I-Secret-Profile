@@ -22,6 +22,14 @@ Route::get('/employee', function() {
     return Inertia::render('Employee/Employee');
 })->name('employee');
 
+Route::get('/blog', function() {
+    return Inertia::render('blogs/landing/blog');
+})->name('blog');
+
+Route::get('/blogdetail', function() {
+    return Inertia::render('blogs/landing/blogdetail');
+})->name('blogdetail');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
