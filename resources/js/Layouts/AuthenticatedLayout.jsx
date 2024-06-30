@@ -20,7 +20,6 @@ export default function Authenticated({ user, header, children }) {
                   <ApplicationLogo className='block h-9 w-auto fill-current text-gray-800' />
                 </Link>
               </div>
-
               <div className='hidden space-x-8 sm:-my-px sm:ms-10 sm:flex'>
                 <NavLink
                   href={route('dashboard')}
@@ -174,7 +173,7 @@ export default function Authenticated({ user, header, children }) {
             </div>
           </div>
         </div>
-      </nav>
+      </nav >
 
       {header && (
         <header className='bg-white shadow'>
@@ -182,9 +181,10 @@ export default function Authenticated({ user, header, children }) {
             {header}
           </div>
         </header>
-      )}
+      )
+      }
 
       <main>{children}</main>
-    </div>
+    </div >
   );
 }

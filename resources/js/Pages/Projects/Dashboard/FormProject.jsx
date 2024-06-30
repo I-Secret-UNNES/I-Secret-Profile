@@ -1,12 +1,13 @@
 import InputLabel from "@/Components/InputLabel";
 import Modal from "@/Components/Modal"
-import { useForm, router } from "@inertiajs/react";
+import { useForm, router, Link } from "@inertiajs/react";
 import { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
+import { Quill } from "react-quill";
 
-function FormProject({ data, setData, formTitle, isModalOpen, closeModal, errors, onSubmitHandler, tranformTitleToSlug, slugChangeHandler }) {
-    // quill handler section
-    const [quill, setQuill] = useState(null);
+function FormProject({ data, setData, formTitle, errors, onSubmitHandler, tranformTitleToSlug, slugChangeHandler }) {
+    console.log(data.description)
+    const [quill, setQuill] = useState();
     const quillRef = useRef(null);
     const modules = {
         toolbar: [
@@ -22,16 +23,9 @@ function FormProject({ data, setData, formTitle, isModalOpen, closeModal, errors
             matchVisual: false,
         }
     };
-    useEffect(() => {
-        setData('description', quill)
-        console.log(quill)
-    }, [quill])
-
-    useEffect(() => {
-        if (!quill) {
-            setQuill(data.description)
-        }
-    }, [data])
+    function handleChange(content, delta, source, editor) {
+        setData('description', content);
+    }
 
     const onSubmit = () => {
         event.preventDefault()
@@ -39,7 +33,7 @@ function FormProject({ data, setData, formTitle, isModalOpen, closeModal, errors
     }
 
     return (
-        <Modal show={isModalOpen} onClose={closeModal} maxWidth='2xl'>
+        <Modal show={true} onClose={false} maxWidth='2xl'>
             <form className='flex flex-col p-0 ' onSubmit={onSubmit}>
                 <h2 className='text-lg font-medium text-gray-900 px-6 mt-6'>{formTitle}</h2>
 
@@ -54,7 +48,7 @@ function FormProject({ data, setData, formTitle, isModalOpen, closeModal, errors
 
                     <div className='mt-4'>
                         <InputLabel value={'Title'} htmlFor="title" />
-                        <input id="title" type="text" value={data.title} onChange={e => tranformTitleToSlug(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-white focus:outline-blue-700 focus:border-blue-300 duration-100 text-gray-800" />
+                        <input id="title" type="text" value={errors.title ? old('title') : data.title} onChange={e => tranformTitleToSlug(e.target.value)} placeholder="Type here" className="input input-bordered w-full bg-white focus:outline-blue-700 focus:border-blue-300 duration-100 text-gray-800" />
                         {errors.title && (
                             <p className="text-red-500 text-xs italic">{errors.title}</p>
                         )}
@@ -104,9 +98,9 @@ function FormProject({ data, setData, formTitle, isModalOpen, closeModal, errors
                             ref={quillRef}
                             id="quill"
                             theme="snow"
-                            value={quill}
+                            value={data.description}
                             className="h-[12rem] text-gray-800"
-                            onChange={setQuill}
+                            onChange={handleChange}
                             formats={['header', 'font', 'size', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image', 'video']}
                             modules={modules}
                         />
@@ -114,15 +108,12 @@ function FormProject({ data, setData, formTitle, isModalOpen, closeModal, errors
                 </div>
 
                 <div className='flex justify-end p-6'>
-                    <button
-                        type='button'
+                    <Link
+                    href={route('project.index')}
                         className='btn bg-gray-500 text-white mr-3'
-                        onClick={() => {
-                            closeModal()
-                        }}
                     >
                         Cancel
-                    </button>
+                    </Link>
                     <button type='submit' className='btn bg-primary text-white'>
                         Submit
                     </button>

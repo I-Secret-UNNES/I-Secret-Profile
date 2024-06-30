@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -11,28 +12,91 @@ use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
+
+
     /**
-     * Display a listing of the resource.
+     * CONTROLLER FOR HANDLE FRONT-END
      */
-    public function index(Request $request)
+
+    public function showProjects(Request $request)
     {
         $search = $request->get('search') ?? "";
         $project = Project::whereAny([
             'title',
         ], 'LIKE', '%' . $search . '%')->with('user')->paginate(10);
+
+        $highlight = Project::where('highlight', 1)->limit(4)->with('user')->get();
+        return Inertia::render('Projects/Landing/MainProjects', [
+            'APP_URL' => env('APP_URL'),
+            'projects' => $project,
+            'searchKeyword' => $search,
+            'highlight' => $highlight
+        ]);
+    }
+
+    public function showSingleProjects($slug)
+    {
+        $project = Project::where('slug', $slug)->with('user')->first();
+        $recent = Project::limit(3)->get();
+        return Inertia::render('Projects/Landing/Projects', [
+            'project' => $project,
+            'recent' => $recent
+        ]);
+    }
+
+
+    /**
+     * CONTROLLER FOR HANDLE BACK-END
+     */
+    
+     public function getProjects($search = NULL){
+        $project = Project::whereAny([
+            'title',
+        ], 'LIKE', '%' . $search . '%')->with('user')->paginate(10);
+        return $project;
+     }
+
+     public function getSearch($request){
+        $search = $request->get('search') ?? "";
+        return $search;
+     }
+
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        $search = $this->getSearch($request);
+        $project = $this->getProjects($search);
         return Inertia::render('Projects/Dashboard/Projects', [
             'APP_URL' => env('APP_URL'),
             'projects' => $project,
-            'searchKeyword' => $search
+            'searchKeyword' => $search,
+            'formHandler' => [
+                'active' => false,
+                'type' => NULL,
+            ]
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $search = $this->getSearch($request);
+        $project = $this->getProjects();
+        return Inertia::render('Projects/Dashboard/Projects', [
+            'APP_URL' => env('APP_URL'),
+            'projects' => $project,
+            'searchKeyword' => $search,
+            'formHandler' => [
+                'active' => true,
+                'type' => 'create',
+            ],
+            'old' => session()->getOldInput()
+        ]);
     }
 
     /**
@@ -47,12 +111,12 @@ class ProjectController extends Controller
             'image' => 'required|file|extensions:jpg,png',
             'creator' => 'required',
             'devision' => 'required',
-            'highlight' => 'required',
+            'highlight' => 'sometimes',
         ]);
 
         $image = $request->file('image');
 
-        $validated['image'] = $image->storeAs('project_image', $validated['title'] . $image->getClientOriginalName());
+        $validated['image'] = $image->storeAs('project_image', $validated['slug'] . $image->getClientOriginalName());
         $validated['slug'] = Str::of($validated['slug'])->slug('-');
 
         $project = Project::create($validated);
@@ -73,9 +137,22 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Request $request, $slug)
     {
-        //
+        $search = $this->getSearch($request);
+        $project = $this->getProjects();
+        $update = Project::where('slug', $slug)->first();
+        return Inertia::render('Projects/Dashboard/Projects', [
+            'APP_URL' => env('APP_URL'),
+            'projects' => $project,
+            'searchKeyword' => $search,
+            'updateData' => $update,
+            'formHandler' => [
+                'active' => true,
+                'type' => 'update',
+            ],
+            'old' => session()->getOldInput()
+        ]);
     }
 
     /**
@@ -86,9 +163,8 @@ class ProjectController extends Controller
         $project = Project::where('id', $request->get('id'));
         $validated = [
             'slug' => [
-                'sometimes',
                 'required',
-                Rule::unique('projects', 'id')->ignore($request->get('id'))
+                Rule::unique('projects')->ignore($request->get('id'), 'id')
             ],
             'title' => [
                 'sometimes', 

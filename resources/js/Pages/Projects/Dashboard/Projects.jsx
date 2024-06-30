@@ -2,122 +2,155 @@ import InputLabel from "@/Components/InputLabel";
 import Modal from "@/Components/Modal";
 import TextInput from "@/Components/TextInput";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Head, router, useForm, usePage } from "@inertiajs/react";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import { useCallback, useEffect, useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import FormProject from "./FormProject";
 import ListProject from "./ListProject";
 import SearchProject from "./SearchProjects";
+import DOMPurify from "dompurify";
 
-export default function Projects({ auth, projects, APP_URL, searchKeyword }) {
-    console.log(projects)
+export default function Projects({ auth, projects, APP_URL, searchKeyword, formHandler, updateData }) {
+    console.log("Projects : " + updateData?.description)
+    // // Create Button
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    // const openModal = () => setIsModalOpen(true);
+    // const closeModal = () => setIsModalOpen(false);
 
-    // Create Button
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    // const onSubmitHandler = async (data) => {
+    //     console.log(data)
+    //     if (isUpdate) {
+    //         await router.visit(
+    //             '/project/update',
+    //             {
+    //                 method: 'post',
+    //                 data: {
+    //                     ...data,
+    //                 }
+    //             }
+    //         )
+    //     }
+    //     else {
+    //         await router.visit(
+    //             '/project',
+    //             {
+    //                 method: 'post',
+    //                 data: {
+    //                     ...data,
+    //                     creator: auth.user.id
+    //                 }
+    //             }
+    //         )
+
+    //     }
+    //     reset()
+    // }
+
+    // useEffect(() => {
+    //     if (Object.keys(errors).length != 0) {
+    //         openModal()
+    //     }
+    // }, [errors])
+
+
+    // // search handler section
+    // const onSearch = (event) => {
+    //     // event.preventDefault()
+    //     router.visit('/project',
+    //         {
+    //             method: 'get',
+    //             data: {
+    //                 search: search
+    //             }
+    //         }
+    //     )
+    // }
+
+    // useEffect(() => {
+    //     if (search != '' && search != searchKeyword) {
+    //         onSearch()
+    //     }
+    // }, [search])
+
+
+    let { errors, flash, old } = usePage().props
     const [search, setSearch] = useState(searchKeyword)
-
-    let { errors, flash } = usePage().props
 
     // form handler
     const [isUpdate, setIsUpdate] = useState(false)
-    const { data, setData, post, progress, reset, setDefaults } = useForm({
-        id: null,
-        image: null,
-        title: null,
-        description: null,
-        devision: null,
-        highlight: null,
-        creator: null,
-        slug: null,
-    })
+    const { data, setData, post, progress, reset, setDefaults } = useForm(
+        updateData ? {
+            ...updateData
+        } :
+            {
+                id: null,
+                image: null,
+                title: null,
+                description: null,
+                devision: null,
+                highlight: false,
+                creator: null,
+                slug: null,
+            }
+    )
+
+    useEffect(() => {
+        setData('description', DOMPurify.sanitize(updateData?.description))
+    }, [updateData])
 
     const tranformTitleToSlug = async (text) => {
         setData({
             ...data,
             title: text,
             slug: text.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-+|-+$/g, '')
+        })
+    }
+
+    const slugChangeHandler = (text) => {
+        setData('slug', text
+            .toLowerCase()
             .replace(/[^a-z0-9\s-]/g, '')
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')
-            .replace(/^-+|-+$/g, '')
-        })
-    }
-    
-    const slugChangeHandler = (text) => {
-        setData('slug', text
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-+|-+$/g, ''))
+            .replace(/^-+|-+$/g, ''))
     }
 
     const onSubmitHandler = async (data) => {
-        console.log(data)
-        if (isUpdate) {
+        const submited = {
+            ...data,
+            description: data.description,
+            creator: auth.user.id
+        }
+        console.log(submited)
+        if (formHandler.type == 'update') {
             await router.visit(
-                '/project/update',
+                route('update.project'),
                 {
                     method: 'post',
                     data: {
-                        ...data,
+                        ...submited,
+                    }
+                }
+            )
+        } else {
+            await router.visit(
+                route('project.store'),
+                {
+                    method: 'post',
+                    data: submited,
+                    preserveState: true,
+                    onError: () => {
+                        console.log(errors)
                     }
                 }
             )
         }
-        else {
-            await router.visit(
-                '/project',
-                {
-                    method: 'post',
-                    data: {
-                        ...data,
-                        creator: auth.user.id
-                    }
-                }
-            )
-
-        }
-        reset()
     }
-
-    const onDeleteHandler = (uuid) => {
-        router.visit(
-            '/project/' + uuid,
-            {
-                method: 'delete'
-            }
-        )
-    }
-
-    useEffect(() => {
-        if (Object.keys(errors).length != 0) {
-            openModal()
-        }
-    }, [errors])
-
-
-    // search handler section
-    const onSearch = (event) => {
-        // event.preventDefault()
-        router.visit('/project',
-            {
-                method: 'get',
-                data: {
-                    search: search
-                }
-            }
-        )
-    }
-
-    useEffect(() => {
-        if (search != '' && search != searchKeyword) {
-            onSearch()
-        }
-    }, [search])
 
     return (
         <Authenticated
@@ -152,43 +185,43 @@ export default function Projects({ auth, projects, APP_URL, searchKeyword }) {
                             )
                         }
                         <div className='p-6 text-gray-900 flex justify-between'>
-                            <button
+                            <Link
+                                href={route('project.create')}
                                 className='btn bg-secondary border-none text-white shadow-md hover:bg-tertiary'
-                                onClick={openModal}
                             >
                                 Add Project
-                            </button>
-                            <SearchProject 
+                            </Link>
+                            <SearchProject
                                 value={search}
                                 setSearch={setSearch}
                             />
                         </div>
                         <div className="px-6 pb-6">
-                            <ListProject    
+                            <ListProject
                                 key={'listprojects'}
                                 datas={projects}
                                 APP_URL={APP_URL}
                                 setData={setData}
-                                openModal={openModal}
                                 setIsUpdate={setIsUpdate}
-                                onDeleteHandler={onDeleteHandler}
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <FormProject
-                isModalOpen={isModalOpen}
-                onSubmitHandler={onSubmitHandler}
-                closeModal={closeModal}
-                errors={errors}
-                data={data}
-                setData={setData}
-                formTitle={data?.id ? "Update Project" : "Add Project"}
-                tranformTitleToSlug={tranformTitleToSlug}
-                slugChangeHandler={slugChangeHandler}
-            />
+            {
+                formHandler.active ? (
+                    <FormProject
+                        onSubmitHandler={onSubmitHandler}
+                        errors={errors}
+                        data={data}
+                        setData={setData}
+                        formTitle={data?.id ? "Update Project" : "Add Project"}
+                        tranformTitleToSlug={tranformTitleToSlug}
+                        slugChangeHandler={slugChangeHandler}
+                    />
+                ) : null
+            }
 
         </Authenticated>
     )

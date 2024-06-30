@@ -15,6 +15,15 @@ Route::get('/', function () {
     ]);
 });
 
+// Route::get('/projects', function () {
+//     return Inertia::render('Projects/Landing/MainProjects');
+// })->name('MainProjects');
+
+
+Route::get('/projects', [ProjectController::class, 'showProjects'])->name('MainProjects');
+
+Route::get('/projects/{slug}', [ProjectController::class, 'showSingleProjects'])->name('detail.project');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -24,8 +33,8 @@ Route::get('/employee', function() {
 })->name('employee');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/project/update', [ProjectController::class, 'update'])->name('update.project');
-    Route::resource('/project', ProjectController::class)->except('update');
+    Route::post('/dashboard/project/update', [ProjectController::class, 'update'])->name('update.project');
+    Route::resource('/dashboard/project', ProjectController::class)->except('update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
